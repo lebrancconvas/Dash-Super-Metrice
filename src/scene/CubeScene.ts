@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 
+import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader';
+
 class CubeScene extends THREE.Scene {
+
+	private readonly fbxLoader = new FBXLoader();
 	
 	// Scene Method. 
 	initialize() {
@@ -9,7 +13,7 @@ class CubeScene extends THREE.Scene {
 	}
 
 	update() {
-		
+
 	}
 
 	// Creation Method. 
