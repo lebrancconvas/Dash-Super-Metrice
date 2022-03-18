@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import CubeScene from './scene/CubeScene';
 
 /* Initial */
 
@@ -18,31 +19,12 @@ renderer.setSize(width, height);
 const mainCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
 
 // Create Scene. 
-const scene = new THREE.Scene;
+const scene = new CubeScene();
 
 
-
-/* Drawing. */
-
-// Create Geometry and Material. 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshPhongMaterial({color: 0xFFAA00});
-
-// Create Cube Mesh. 
-const cube = new THREE.Mesh(geometry, material);
-cube.position.z = -5; // Assign Local Position (Z) of an abject. 
-cube.position.y = 1; // Assign Local Position (Y) of an object. 
-
-// Add Cube Mesh to Scene. 
-scene.add(cube);
-
-// Create Light. 
-const light = new THREE.DirectionalLight(0xFFFFFF, 1);
-light.position.set(0, 4, 2);
-
-// Add Light to Scene. 
-scene.add(light);
-
+/* Drawing */
+// Create Drawing Function in another module and imply to this.
+scene.initialize();
 
 
 /* Rendering */ 
