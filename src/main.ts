@@ -12,7 +12,7 @@ const renderer = new THREE.WebGLRenderer({
 // Set Renderer's Area. 
 renderer.setSize(width, height);
 
-// Create Main Camera as a Perspective Camera. `
+// Create Main Camera as a Perspective Camera. (The Parameters are Field of View, Aspect Ratio, Near Plane, and Far Plane.) 
 const mainCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
 
 // Create Scene. 
