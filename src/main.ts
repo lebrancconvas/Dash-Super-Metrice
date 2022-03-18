@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import CubeScene from './scene/CubeScene';
+import SoundObject from './object/SoundObject';
 
 /* Initial */
 
