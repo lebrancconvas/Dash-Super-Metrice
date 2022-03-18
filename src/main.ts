@@ -30,4 +30,11 @@ scene.initialize();
 /* Rendering */ 
 
 // Using Renderer to render the Scene and the Main Camera. 
-renderer.render(scene, mainCamera); 
+
+function tick() {
+  scene.update();
+  renderer.render(scene, mainCamera); 
+  requestAnimationFrame(tick);
+}
+
+tick(); 
