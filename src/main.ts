@@ -1,48 +1,35 @@
 import * as THREE from 'three';
 import MainScene from './scene/MainScene';
-// import SoundObject from './object/SoundObject';
 
-/* Initial */
+// Camera
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+// camera.position.set(0, 5, 5);
+// camera.lookAt(0, 0, 0);
 
-// Get Width and Height. 
-const width: number = window.innerWidth;
-const height: number = window.innerHeight;
-
-// Create Graphics Renderer. 
-const renderer = new THREE.WebGLRenderer({
+// Renderer 
+const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
+  antialias: true,
   canvas: document.getElementById('app') as HTMLCanvasElement
 });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-// Set Renderer's Area. 
-renderer.setSize(width, height);
-
-// Create Main Camera as a Perspective Camera. (The Parameters are Field of View, Aspect Ratio, Near Plane, and Far Plane.) 
-const mainCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
-
-// Create Scene. 
-const scene = new MainScene(mainCamera);
-
-// Create Image Background Texture. 
-const textureLoader = new THREE.TextureLoader();
-const texturePath = "assets/image/background/Bridge_01.jpeg";
-textureLoader.load(texturePath, (texture) => {
-  scene.background = texture;
-});
-
-
-/* Drawing */
-// Create Drawing Function in another module and imply to this.
+// Scene 
+const scene = new MainScene(camera);
 scene.initialize();
 
+// Background Texture
+const textureLoader = new THREE.TextureLoader();
+const texturePath = 'assets/image/background/Bridge_01.jpeg';
+textureLoader.load(texturePath, texture => {
+  scene.background = texture;
+})
 
-/* Rendering */ 
-
-// Using Renderer to render the Scene and the Main Camera. 
-
-function tick() {
+// Animate
+function animate() {
   scene.update();
-  renderer.render(scene, mainCamera); 
-  requestAnimationFrame(tick);
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
 }
 
-tick(); 
+animate();
