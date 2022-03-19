@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import CubeScene from './scene/CubeScene';
-import SoundObject from './object/SoundObject';
+import MainScene from './scene/MainScene';
+// import SoundObject from './object/SoundObject';
 
 /* Initial */
 
@@ -20,7 +20,14 @@ renderer.setSize(width, height);
 const mainCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
 
 // Create Scene. 
-const scene = new CubeScene();
+const scene = new MainScene(mainCamera);
+
+// Create Image Background Texture. 
+const textureLoader = new THREE.TextureLoader();
+const texturePath = "assets/image/background/Bridge_01.jpeg";
+textureLoader.load(texturePath, (texture) => {
+  scene.background = texture;
+});
 
 
 /* Drawing */
