@@ -36,6 +36,7 @@ class MainScene extends THREE.Scene {
 		this.translateObject(block2, 1, -0.8, -5);
 		this.translateObject(bridge, 0, -0.5, -5);
 		this.translateObject(this.racecar, 0, -1, -5);
+		this.racecar.rotateX(this.degreeToRadian(30));
 
 		this.racecar.add(this.camera);
 		this.camera.position.z = 3;
@@ -67,15 +68,15 @@ class MainScene extends THREE.Scene {
 	private updateInput() {
 		const dir = this.directionVector;
 		this.camera.getWorldDirection(dir);
-		const speed = 0.1;
+		let speed = 0.1;
 		if(this.keyDown.has('w')) {
-			this.racecar.position.y = speed;
+			this.racecar.position.add(dir.clone().multiplyScalar(speed));
 		} else if(this.keyDown.has('s')) {
-			this.racecar.position.y = -speed;
+			this.racecar.position.add(dir.clone().multiplyScalar(-speed));
 		} else if(this.keyDown.has('a')) {
-			this.racecar.position.x = -speed;
+			this.racecar.position.x = speed--;
 		} else if(this.keyDown.has('d')) {
-			this.racecar.position.x = speed;
+			this.racecar.position.x = speed++;
 		}
 	}
 	
